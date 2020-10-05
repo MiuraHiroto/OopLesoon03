@@ -46,9 +46,9 @@ namespace Chapter5
             /*string n = s.Replace("big", "small");
             Console.WriteLine(n);*/
             //5.3.3
-           /* var count = s.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Length;
-            //int count = text.Split('').count();
-            Console.WriteLine(count);*/
+            /* var count = s.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Length;
+             //int count = text.Split('').count();
+             Console.WriteLine(count);*/
             //5.3.4   
             /*s.Split(' ').Where(c => c.Length <= 4).ToList().ForEach(Console.WriteLine);//ラムダ式
             var words = s.Split(' ').Where(c => c.Length <= 4);
@@ -69,14 +69,16 @@ namespace Chapter5
                 Console.WriteLine(sb);
             }*/
             #endregion
-
+            #region 5.4
             //5.4
             //var word = line.Split(';');
-            foreach (var line in lines.Split(';'))
+            /*foreach (var line in lines.Split(';'))
             {
                 var word = line.Split('=');
                 Console.WriteLine("{0}:{1}", ToJapanese(word[0]), word[1]);
-            }
+            }*/
+            #endregion
+
         }
         static string ToJapanese(string key)
         {
