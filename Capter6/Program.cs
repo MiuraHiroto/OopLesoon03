@@ -51,6 +51,21 @@ namespace Capter6
                 new Book { Title = "私でも分かったASP.NET MVC", Price = 3200, Pages = 453 },
                 new Book { Title = "楽しいC#プログラミング教室", Price = 2540, Pages = 348 },
             };
+            //すべての書籍から「C#」の文字がいくつあるかをカウント
+            int count = 0;
+
+            foreach (var item in books.Where(b => b.Title.Contains("C#")))
+            {
+                for (int i = 0; i < item.Title.Length - 1 ; i++)
+                {
+                    if ((item.Title[i] == 'C')&&(item.Title[i + 1] == '#'))
+                    {
+                        count++;
+                    }
+                }
+            }
+            Console.WriteLine($"文字列「C#」の個数は{count}です。");
+
             //6.2.1
             var book = books.Where(x => x.Title == "C#プログラミングの新常識");
             /*if (book != null)
@@ -68,11 +83,11 @@ namespace Capter6
             Console.WriteLine(books.Where(x => x.Title.Contains("C#")).Average(x => x.Pages ));
             //6.2.4
             //Console.WriteLine(books.FirstOrDefault(x => x.Price >= 4000));
-            var booke = books.FirstOrDefault(b => b.Price >= 4000);
+           /* var booke = books.FirstOrDefault(b => b.Price >= 4000);
             if (booke != null)
             {
                 Console.WriteLine(booke.Title);
-            }
+            }*/
             //6.2.5
             var pages = books.Where(b => b.Price < 4000).Max();
             Console.WriteLine(pages);
