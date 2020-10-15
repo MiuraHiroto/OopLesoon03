@@ -20,7 +20,9 @@ namespace Chapter7
             while (true)
             {
                 Console.WriteLine("1.登録　2.内容を表示　3.終了");
+                Console.Write(">");
                 var n = Console.ReadLine();
+                Console.WriteLine();
                 if (n == "1")
                 {
                     Console.Write("KEYを入力:");
