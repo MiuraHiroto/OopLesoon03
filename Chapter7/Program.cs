@@ -12,77 +12,54 @@ namespace Chapter7
     {
         static void Main(string[] args)
         {
-            #region 辞書登録プログラム
-            /*var dict = new Dictionary<string, List<string>>();
-            Console.WriteLine("********************");
-            Console.WriteLine("*辞書登録プログラム*");
-            Console.WriteLine("********************");
+            // List 7-20
+            // コンストラクタ呼び出し
+            var abbrs = new Abbreviations();
 
-            while (true)
-            {
-                Console.WriteLine("1.登録　2.内容を表示　3.終了");
-                Console.Write(">");
-                var n = Console.ReadLine();
-                Console.WriteLine();
-                if (n == "1")
-                {
-                    Console.Write("KEYを入力:");
-                    var key = Console.ReadLine();
-                    Console.Write("VALUEを入力:");
-                    var value = Console.ReadLine();
-                    Console.WriteLine("登録しました！");
-                    // ディクショナリに追加
-                    if (dict.ContainsKey(key))
-                    {
-                        dict[key].Add(value);
-                    } else
-                    {
-                        dict[key] = new List<string> { value };
-                    }
-                }
-                if (n == "2")
-                {
-                    // ディクショナリの内容を列挙
-                    foreach (var item in dict)
-                    {
-                        foreach (var term in item.Value)
-                        {
-                            Console.WriteLine("{0} : {1}", item.Key, term);
-                        }
-                    }
-                }
-                if (n == "3")
-                {
-                    break;
-                }*/
-            #endregion
-            var text = "Cozy lummox gives smart squid who asks for job pen";
-            Exercise1_1(text); //問題7.1
-        }
+            // Addメソッドの呼び出し例
+            abbrs.Add("IOC", "国際オリンピック委員会");
+            abbrs.Add("NPT", "核兵器不拡散条約");
 
-        static void Exercise1_1(string text)
-        {
-            var dict = new Dictionary<char, int>();
-            
-            foreach (var ch in text.ToUpper())
+            //問題7.2.3
+            //Count プロパティを呼び出して数を出力させる。
+            Console.WriteLine(abbrs.Count);
+            //Removeメソッドを呼び出して要素を削除する
+            if (abbrs.Remove("NPT"))
             {
-                if ('A' <= ch && ch <= 'Z')
-                {
-                    if (dict.ContainsKey(ch))
-                    {
-                        dict[ch] += 1;
-                    } else
-                    {
-                        dict[ch] = 1;
-                    }
-                }
+                Console.WriteLine("削除成功");
+            } else
+            {
+                Console.WriteLine("削除失敗");
             }
 
-            foreach (var item in dict.OrderBy(x => x.Key))
+
+
+            // インデクサの利用例
+            var names = new[] { "WHO", "FIFA", "NPT", };
+            foreach (var name in names)
             {
-                Console.WriteLine("{0} : {1}", item.Key, item.Value);
+                var fullname = abbrs[name];
+                if (fullname == null)
+                    Console.WriteLine("{0}は見つかりません", name);
+                else
+                    Console.WriteLine("{0}={1}", name, fullname);
             }
-        }
-        
+
+            // ToAbbreviationメソッドの利用例
+            var japanese = "東南アジア諸国連合";
+            var abbreviation = abbrs.ToAbbreviation(japanese);
+            if (abbreviation == null)
+                Console.WriteLine("{0} は見つかりません", japanese);
+            else
+                Console.WriteLine("「{0}」の略語は {1} です", japanese, abbreviation);
+            Console.WriteLine();
+
+            // FindAllメソッドの利用例
+            foreach (var item in abbrs.FindAll("国際"))
+            {
+                Console.WriteLine("{0}={1}", item.Key, item.Value);
+            }
+            Console.WriteLine();
+        }       
     }
 }

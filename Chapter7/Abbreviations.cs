@@ -12,6 +12,20 @@ namespace Chapter7
     class Abbreviations {
         private Dictionary<string, string> _dict = new Dictionary<string, string>();
 
+        //7.2.1
+        public int Count { 
+                       
+            get {
+                return _dict.Count;   
+            }
+        }
+
+        //7.2.2
+        public bool Remove(string abb)
+        {
+            return _dict.Remove(abb);
+        }
+
         // コンストラクタ
         public Abbreviations() {
             var lines = File.ReadAllLines("Abbreviations.txt");
