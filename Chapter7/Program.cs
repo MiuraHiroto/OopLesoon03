@@ -12,7 +12,8 @@ namespace Chapter7
     {
         static void Main(string[] args)
         {
-            var dict = new Dictionary<string, List<string>>();
+            #region 辞書登録プログラム
+            /*var dict = new Dictionary<string, List<string>>();
             Console.WriteLine("********************");
             Console.WriteLine("*辞書登録プログラム*");
             Console.WriteLine("********************");
@@ -53,8 +54,35 @@ namespace Chapter7
                 if (n == "3")
                 {
                     break;
-                }
-            }    
+                }*/
+            #endregion
+            var text = "Cozy lummox gives smart squid who asks for job pen";
+            Exercise1_1(text); //問題7.1
         }
+
+        static void Exercise1_1(string text)
+        {
+            var dict = new Dictionary<char, int>();
+            
+            foreach (var ch in text.ToUpper())
+            {
+                if ('A' <= ch && ch <= 'Z')
+                {
+                    if (dict.ContainsKey(ch))
+                    {
+                        dict[ch] += 1;
+                    } else
+                    {
+                        dict[ch] = 1;
+                    }
+                }
+            }
+
+            foreach (var item in dict.OrderBy(x => x.Key))
+            {
+                Console.WriteLine("{0} : {1}", item.Key, item.Value);
+            }
+        }
+        
     }
 }
