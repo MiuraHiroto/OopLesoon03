@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -60,6 +61,11 @@ namespace Chapter7
                 Console.WriteLine("{0}={1}", item.Key, item.Value);
             }
             Console.WriteLine();
+
+            foreach (var item in abbrs.Where(x => x.Key.Length == 3))
+            {
+                Console.WriteLine($"{item.Key}={item.Value}");
+            }
         }       
     }
 }
