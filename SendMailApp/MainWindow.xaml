@@ -5,20 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SendMailApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
-    <Grid Margin="10">
+        Title="MainWindow" Height="400" Width="600">
+    <Grid Margin="10" Background="Azure">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="5*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="28*"/>
-
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="85*"/>
         </Grid.ColumnDefinitions>
+        <TextBlock Text="件名：" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="20" HorizontalAlignment="Right" Margin="4"/>
+        <TextBox x:Name="tbTitle" Grid.Row="0" Grid.Column="1" Margin="5"/>
+        <TextBlock Text="To：" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1" FontSize="20" HorizontalAlignment="Right" Margin="4"/>
+        <TextBox x:Name="tbTo" Grid.Row="1" Grid.Column="1" Margin="5"/>
+        <TextBlock Text="Cc：" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" FontSize="20" HorizontalAlignment="Right" Margin="4"/>
+        <TextBox x:Name="tbCc" Grid.Row="2" Grid.Column="1" Margin="5"/>
+        <TextBlock Text="Bcc：" VerticalAlignment="Center" Grid.Column="0" Grid.Row="3" FontSize="20" HorizontalAlignment="Right" Margin="4"/>
+        <TextBox x:Name="tbBcc" Grid.Row="3" Grid.Column="1" Margin="5"/>
+        <TextBlock Text="本文：" VerticalAlignment="Center" Grid.Column="0" Grid.Row="4" FontSize="20" HorizontalAlignment="Right" Margin="4"/>
+        <TextBox x:Name="tbBody" Grid.Row="4" Grid.Column="1" Margin="5"/>
+        <StackPanel Orientation="Horizontal" Grid.Column="1"  Grid.Row="5" HorizontalAlignment="Right">
+            <Button x:Name="btCancel" Content="キャンセル" Width="100" Margin="5" Click="btCancel_Click"/>
+            <Button  x:Name="btOk" Content="送信" Width="100" Margin="5" Click="btOk_Click"/>
+        </StackPanel>
+
     </Grid>
+
 </Window>
