@@ -50,12 +50,20 @@ namespace SendMailApp
             try
             {
                 MailMessage msg = new MailMessage("ojsinfosys01@gmail.com", tbTo.Text);
-                var cc = tbCc.Text.Split(',');
+
+                if (tbCc.Text != "")
+                    msg.CC.Add(tbCc.Text);
+                //msg.CC.Add(tbCc.Text);
+                /*var cc = tbCc.Text.Split(',');
                 foreach (var item in cc)
                 {
                     msg.CC.Add(item);
-                }
-                
+                }*/
+
+                //msg.Bcc.Add(tbBcc.Text);
+                if (tbCc.Text != "")
+                    msg.Bcc.Add(tbBcc.Text);
+
                 msg.Subject = tbTitle.Text; //件名
                 msg.Body = tbBody.Text; //本文
 
