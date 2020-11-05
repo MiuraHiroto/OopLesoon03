@@ -53,7 +53,7 @@ namespace SendMailApp
                 var cc = tbCc.Text.Split(',');
                 foreach (var item in cc)
                 {
-                    msg.CC.Add(new MailAddress(item));
+                    msg.CC.Add(item);
                 }
                 
                 msg.Subject = tbTitle.Text; //件名
