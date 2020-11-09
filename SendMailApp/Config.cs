@@ -70,5 +70,15 @@ namespace SendMailApp
 
             return true;
         }
+
+        public void Serialise()//シリアル化
+        {
+
+        }
+
+        public void DeSerialise()//逆シリアル化
+        {
+
+        }
     }
 }
