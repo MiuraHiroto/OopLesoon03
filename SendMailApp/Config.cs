@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace SendMailApp
 {
@@ -14,7 +16,7 @@ namespace SendMailApp
         public string Smtp { get; set; }    //smtpサーバ
         public string MailAddress { get; set; } //自メールアドレス(送信先)
         public string PassWord { get; set; }    // パスワード
-        public int port { get; set; }    //ポート番号
+        public int Port { get; set; }    //ポート番号
         public bool Ssl { get; set; }     //SSL設定
 
         //インスタンスの取得
@@ -39,7 +41,7 @@ namespace SendMailApp
             Smtp = "smtp.gmail.com";
             MailAddress = "ojsinfosys01@gmail.com";
             PassWord = "ojsInfosys2020";
-            port = 587;
+            Port = 587;
             Ssl = true;
 
         }
@@ -52,7 +54,7 @@ namespace SendMailApp
                 Smtp = "smtp.gmail.com",
                 MailAddress = "ojsinfosys01@gmail.com",
                 PassWord = "ojsInfosys2020",
-                port = 587,
+                Port = 587,
                 Ssl = true,
             };
             return obj;
@@ -65,15 +67,28 @@ namespace SendMailApp
             this.Smtp = smtp;
             this.MailAddress = mailAddress;
             this.PassWord = passWord;
-            this.port = port;
+            this.Port = port;
             this.Ssl = ssl;
 
             return true;
         }
-
+        
         public void Serialise()//シリアル化
         {
+            var config = new Config
+            {
+                Smtp = Smtp,
+                MailAddress = MailAddress,
+                PassWord = PassWord,
+                Port = Port,
+                Ssl = Ssl,
+            };
 
+            using(var weiter = XmlWriter.Create("config.xml"))
+            {
+                var serializer = new XmlSerializer(config.GetType());
+                serializer.Serialize(weiter, config);
+            }
         }
 
         public void DeSerialise()//逆シリアル化

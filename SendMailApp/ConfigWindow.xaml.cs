@@ -31,7 +31,7 @@ namespace SendMailApp
             //tbSmtp.Text = defaultData.Smtp;
 
             tbSmtp.Text = cf.Smtp;
-            tbPort.Text = cf.port.ToString();
+            tbPort.Text = cf.Port.ToString();
             tbSender.Text = tbUserName.Text = cf.MailAddress;
             tbPassWord.Password = cf.PassWord;
             cbSsl.IsChecked = cf.Ssl;
@@ -63,10 +63,15 @@ namespace SendMailApp
         {
             Config cf = (Config.GetInstance());
             tbSmtp.Text = cf.Smtp;
-            tbPort.Text = cf.port.ToString();
+            tbPort.Text = cf.Port.ToString();
             tbSender.Text = tbUserName.Text = cf.MailAddress;
             tbPassWord.Password = cf.PassWord;
             cbSsl.IsChecked = cf.Ssl;
+
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
 
         }
     }

@@ -72,7 +72,7 @@ namespace SendMailApp
                 //sc.Host = "smtp.gmail.com"; //SMTPサーバーの設定
                 sc.Host = cf.Smtp;
                 //sc.Port = 587;
-                sc.Port = cf.port;
+                sc.Port = cf.Port;
                 //sc.EnableSsl = true;
                 sc.EnableSsl = cf.Ssl;
                 //sc.Credentials = new NetworkCredential("ojsinfosys01@gmail.com", "ojsInfosys2020");
@@ -102,7 +102,12 @@ namespace SendMailApp
         //メインウインドウがロードされるタイミングで呼び出される
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            Config.GetInstance().DeSerialise();
+        }
 
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Config.GetInstance().Serialise();
         }
     }
 }
