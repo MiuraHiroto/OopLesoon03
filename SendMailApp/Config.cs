@@ -60,13 +60,13 @@ namespace SendMailApp
         
         //設定データ更新
         //public bool UpdateStatus(Config cf) //cfのことを仮引数という。
-        public bool UpdateStatus(string smtp,string mailAddress,string passWord,int port,bool Ssl)  
+        public bool UpdateStatus(string smtp,string mailAddress,string passWord,int port,bool ssl)  
         {
-            this.Smtp = Smtp;
-            this.MailAddress = MailAddress;
-            this.PassWord = PassWord;
+            this.Smtp = smtp;
+            this.MailAddress = mailAddress;
+            this.PassWord = passWord;
             this.port = port;
-            this.Ssl = Ssl;
+            this.Ssl = ssl;
 
             return true;
         }
