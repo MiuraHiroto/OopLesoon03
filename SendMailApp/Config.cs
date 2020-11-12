@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -11,7 +12,7 @@ namespace SendMailApp
     public class Config
     {
         //単一のインスタンス
-        private static Config instance;
+        private static Config instance = null;
 
         public string Smtp { get; set; }    //smtpサーバ
         public string MailAddress { get; set; } //自メールアドレス(送信先)
@@ -72,28 +73,39 @@ namespace SendMailApp
 
             return true;
         }
-        
+         
         public void Serialise()//シリアル化
         {
-            var config = new Config
+            /*var config = new Config
             {
                 Smtp = Smtp,
                 MailAddress = MailAddress,
                 PassWord = PassWord,
                 Port = Port,
                 Ssl = Ssl,
-            };
+            };*/
 
-            using(var weiter = XmlWriter.Create("config.xml"))
+            using (var weiter = XmlWriter.Create("config.xml"))
             {
-                var serializer = new XmlSerializer(config.GetType());
-                serializer.Serialize(weiter, config);
+                var serializer = new XmlSerializer(instance.GetType());
+                serializer.Serialize(weiter, instance);
             }
         }
 
         public void DeSerialise()//逆シリアル化
         {
 
+            using (var reader = XmlReader.Create("config.xml"))
+            {
+                var serializer = new XmlSerializer(typeof(Config));
+                instance = serializer.Deserialize(reader) as Config;
+                /* Smtp = config.Smtp;
+                 Port = config.Port;
+                 MailAddress = config.MailAddress;
+                 PassWord = config.PassWord;
+                 Ssl = config.Ssl;*/
+
+            }
         }
     }
 }
