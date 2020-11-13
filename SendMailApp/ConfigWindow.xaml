@@ -28,15 +28,15 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Row="0" Grid.Column="0" Text="SMTPサーバー："
                            HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <TextBox x:Name="tbSmtp" Grid.Row="0" Grid.Column="1" Margin="5,20" TextChanged="textBox1_TextChanged"/>
+                <TextBox x:Name="tbSmtp" Grid.Row="0" Grid.Column="1" Margin="5,20" />
                 
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="ユーザー名："
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox x:Name="tbUserName" Grid.Row="1" Grid.Column="1" Margin="5,20" TextChanged="textBox1_TextChanged"/>
+                <TextBox x:Name="tbUserName" Grid.Row="1" Grid.Column="1" Margin="5,20" />
                 
                 <TextBlock Grid.Row="0" Grid.Column="2" Text="ポート："
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox x:Name="tbPort" Grid.Row="0" Grid.Column="3" Margin="5,20" TextChanged="textBox1_TextChanged"/>
+                <TextBox x:Name="tbPort" Grid.Row="0" Grid.Column="3" Margin="5,20" />
                 
                 <TextBlock Grid.Row="1" Grid.Column="2" Text="パスワード："
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -60,7 +60,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="送信元："
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBox x:Name="tbSender" Grid.Row="1" Grid.Column="1" Margin="5" TextChanged="textBox1_TextChanged"/>
+                <TextBox x:Name="tbSender" Grid.Row="1" Grid.Column="1" Margin="5" />
 
             </Grid>
         </GroupBox>

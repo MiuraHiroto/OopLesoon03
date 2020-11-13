@@ -21,6 +21,8 @@ namespace SendMailApp
     /// </summary>
     public partial class ConfigWindow : Window
     {
+        //bool Textchanged = false;
+
         public ConfigWindow()
         {
             InitializeComponent();
@@ -63,7 +65,6 @@ namespace SendMailApp
         {
             if (tbSmtp.Text == "" || tbUserName.Text == "" || tbPassWord.Password  == "" || tbSender.Text == "")
             {
-
                 Message();
             } else
             {
@@ -80,38 +81,33 @@ namespace SendMailApp
                 MessageBoxIcon.Error);
         }
 
-        private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            MessageBoxs();
-        }
-
-        private void textBox1_TextChanged(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         //キャンセルボタン
         private void btCancel_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
                 textBox1_TextChanged(sender, e);
-            }
-            catch (Exception)
-            {
+            
+        }
 
-                this.Close();
-               
-            }
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            //Textchanged = true;
+            MessageBoxs();
         }
 
         private void MessageBoxs()
         {
             //メッセージボックスを表示する
-            System.Windows.Forms.MessageBox.Show("変更が反映されていません",
-                "質問",
-                MessageBoxButtons.OKCancel,
-                MessageBoxIcon.Error);
+            var cf = System.Windows.MessageBox.Show("変更が反映されていません",
+                "エラー",
+                MessageBoxButton.OKCancel
+                );
+            if (cf == MessageBoxResult.OK)
+            {
+                this.Close();
+            }else if(cf == MessageBoxResult.Cancel)
+            {
+
+            }
         }
 
         //ロード時に一度だけ呼び出される
