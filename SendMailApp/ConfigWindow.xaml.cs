@@ -71,6 +71,7 @@ namespace SendMailApp
                 this.Close();
             }  
         }
+
         private void Message()
         {
             MessageBox.Show("正しい値を入力してください。",
@@ -78,11 +79,41 @@ namespace SendMailApp
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
         }
+
+        private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            MessageBoxs();
+        }
+
+        private void textBox1_TextChanged(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         //キャンセルボタン
         private void btCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            try
+            {
+                textBox1_TextChanged(sender, e);
+            }
+            catch (Exception)
+            {
+
+                this.Close();
+               
+            }
         }
+
+        private void MessageBoxs()
+        {
+            //メッセージボックスを表示する
+            System.Windows.Forms.MessageBox.Show("変更が反映されていません",
+                "質問",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Error);
+        }
+
         //ロード時に一度だけ呼び出される
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -99,5 +130,7 @@ namespace SendMailApp
 
          
         }
+
+       
     }
 }
