@@ -42,26 +42,33 @@ namespace SendMailApp
         //適用（更新）
         private void btApply_Click(object sender, RoutedEventArgs e)
         {
-            
-                (Config.GetInstance()).UpdateStatus(
-                    tbSmtp.Text,
-                    tbUserName.Text,
-                    tbPassWord.Password,
-                    int.Parse(tbPort.Text),
-                    cbSsl.IsChecked ?? false); //更新処理を呼び出す。   
 
+            if (tbSmtp.Text == "" || tbUserName.Text == "" || tbPassWord.Password == "" || tbSender.Text == "")
+            {
+
+                Message();
+            } else
+            {
+                (Config.GetInstance()).UpdateStatus(
+                   tbSmtp.Text,
+                   tbUserName.Text,
+                   tbPassWord.Password,
+                   int.Parse(tbPort.Text),
+                   cbSsl.IsChecked ?? false); //更新処理を呼び出す。   
+            }
         }
 
         //Okボタン
         private void btOk_Click(object sender, RoutedEventArgs e)
         {
-            if (tbSmtp.Text != "" || tbUserName.Text != "" || tbPassWord.Password  != "")
+            if (tbSmtp.Text == "" || tbUserName.Text == "" || tbPassWord.Password  == "" || tbSender.Text == "")
+            {
+
+                Message();
+            } else
             {
                 btApply_Click(sender, e);//更新要素を取り出す
                 this.Close();
-            } else
-            {
-                Message();
             }  
         }
         private void Message()
