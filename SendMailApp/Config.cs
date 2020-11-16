@@ -76,15 +76,6 @@ namespace SendMailApp
          
         public void Serialise()//シリアル化
         {
-            /*var config = new Config
-            {
-                Smtp = Smtp,
-                MailAddress = MailAddress,
-                PassWord = PassWord,
-                Port = Port,
-                Ssl = Ssl,
-            };*/
-
             using (var weiter = XmlWriter.Create("config.xml"))
             {
                 var serializer = new XmlSerializer(instance.GetType());
@@ -94,17 +85,10 @@ namespace SendMailApp
 
         public void DeSerialise()//逆シリアル化
         {
-
             using (var reader = XmlReader.Create("config.xml"))
             {
                 var serializer = new XmlSerializer(typeof(Config));
                 instance = serializer.Deserialize(reader) as Config;
-                /* Smtp = config.Smtp;
-                 Port = config.Port;
-                 MailAddress = config.MailAddress;
-                 PassWord = config.PassWord;
-                 Ssl = config.Ssl;*/
-
             }
         }
     }

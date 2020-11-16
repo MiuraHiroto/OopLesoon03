@@ -55,27 +55,6 @@ namespace SendMailApp
                 //MailMessage msg = new MailMessage("ojsinfosys01@gmail.com", tbTo.Text);
                 MailMessage msg = new MailMessage(cf.MailAddress, tbTo.Text);
 
-                if (tbCc.Text != "")
-                    msg.CC.Add(tbCc.Text);
-                //msg.CC.Add(tbCc.Text);
-                /*var cc = tbCc.Text.Split(',');
-                foreach (var item in cc)
-                {
-                    msg.CC.Add(item);
-                }*/
-
-                //msg.Bcc.Add(tbBcc.Text);
-                if (tbCc.Text != "")
-                    msg.Bcc.Add(tbBcc.Text);
-
-                if (lbBox.Items != null)
-                {
-                    foreach (var item in lbBox.Items)
-                    {
-                        msg.Attachments.Add(new Attachment(item.ToString()));
-                    }
-                }
-
                 msg.Subject = tbTitle.Text; //件名
                 msg.Body = tbBody.Text; //本文
 
@@ -89,13 +68,28 @@ namespace SendMailApp
                 sc.Credentials = new NetworkCredential(cf.MailAddress, cf.PassWord);
 
                 sc.SendMailAsync(msg);
-                //sc.Send(msg); //送信
+
+                if (tbCc.Text != "")
+                    msg.CC.Add(tbCc.Text);
+
+                if (tbCc.Text != "")
+                    msg.Bcc.Add(tbBcc.Text);
+
+                //添付ファイル追加
+                if (lbBox.Items != null)
+                {
+                    foreach (var item in lbBox.Items)
+                    {
+                        msg.Attachments.Add(new Attachment(item.ToString()));
+                    }
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
         //送信キャンセル処理
         private void btCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -114,8 +108,6 @@ namespace SendMailApp
             ConfigWindow configWindow = new ConfigWindow();//設定画面のインスタンスを生成
             configWindow.ShowDialog();//表示
         }
-
-    
 
         //メインウインドウがロードされるタイミングで呼び出される
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -137,7 +129,6 @@ namespace SendMailApp
 
         private void Window_Closed(object sender, EventArgs e)
         {
-           
             try
             {
                 Config.GetInstance().Serialise();
@@ -148,12 +139,22 @@ namespace SendMailApp
             }
         }
 
+        //添付ファイル追加
         private void btAdd(object sender, RoutedEventArgs e)
         {
             var ofd = new OpenFileDialog();
             if (ofd.ShowDialog() == true)
             {
                 lbBox.Items.Add(ofd.FileName);
+            }
+        }
+
+        //添付ファイル削除
+        private void btDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (lbBox.SelectedIndex != -1)
+            {
+                lbBox.Items.RemoveAt(lbBox.SelectedIndex);
             }
         }
     }
