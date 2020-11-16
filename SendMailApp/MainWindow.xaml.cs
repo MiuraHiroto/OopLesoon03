@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -66,6 +67,14 @@ namespace SendMailApp
                 //msg.Bcc.Add(tbBcc.Text);
                 if (tbCc.Text != "")
                     msg.Bcc.Add(tbBcc.Text);
+
+                if (lbBox.Items != null)
+                {
+                    foreach (var item in lbBox.Items)
+                    {
+                        msg.Attachments.Add(new Attachment(item.ToString()));
+                    }
+                }
 
                 msg.Subject = tbTitle.Text; //件名
                 msg.Body = tbBody.Text; //本文
@@ -136,6 +145,15 @@ namespace SendMailApp
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btAdd(object sender, RoutedEventArgs e)
+        {
+            var ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == true)
+            {
+                lbBox.Items.Add(ofd.FileName);
             }
         }
     }

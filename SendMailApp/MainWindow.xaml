@@ -22,8 +22,8 @@
             <ColumnDefinition Width="40*"/>
         </Grid.ColumnDefinitions>
         <TextBlock Text="添付ファイル:" VerticalAlignment="Center" Grid.Column="2" Grid.Row="0" FontSize="13" HorizontalAlignment="Right" Margin="4"/>
-        <Button x:Name="btad" Content="追加" Grid.Column="2" Grid.Row="2" Margin="4"/>
-        <Button x:Name="btDelete" Content="削除" Grid.Column="2" Grid.Row="3" Margin="4"/>
+        <Button x:Name="btad" Content="追加" Grid.Column="2" Grid.Row="2" Margin="4" Click="btAdd"/>
+        <Button x:Name="btDelete" Content="削除" Grid.Column="2" Grid.Row="3" Margin="4" Click="btCancel_Click"/>
         <ListBox x:Name="lbBox" Grid.Column="3" Grid.Row="0" Grid.RowSpan="4" Margin="4"/>
         <TextBlock Text="件名：" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="20" HorizontalAlignment="Right" Margin="4"/>
         <TextBox x:Name="tbTitle" Grid.Row="0" Grid.Column="1" Margin="5"/>
@@ -34,7 +34,7 @@
         <TextBlock Text="Bcc：" VerticalAlignment="Center" Grid.Column="0" Grid.Row="3" FontSize="20" HorizontalAlignment="Right" Margin="4"/>
         <TextBox x:Name="tbBcc" Grid.Row="3" Grid.Column="1" Margin="5"/>
         <TextBlock Text="本文：" VerticalAlignment="Center" Grid.Column="0" Grid.Row="4" FontSize="20" HorizontalAlignment="Right" Margin="4"/>
-        <TextBox x:Name="tbBody" Grid.Row="4" Grid.Column="1" Margin="5"/>
+        <TextBox x:Name="tbBody" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="5"/>
         <StackPanel Orientation="Horizontal" Grid.Column="3"  Grid.Row="5" HorizontalAlignment="Right">
             <Button x:Name="btCancel" Content="キャンセル" Width="100" Margin="5" Click="btCancel_Click"/>
             <Button  x:Name="btOk" Content="送信" Width="100" Margin="5" Click="btOk_Click"/>
